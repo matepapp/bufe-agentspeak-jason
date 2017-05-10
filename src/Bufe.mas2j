@@ -2,12 +2,10 @@
 
 MAS bufe {
     infrastructure: Centralised
-	environment: BufeEnv(gui)
+	environment: BufeEnv
     agents:
         costumer;
         bufe;
         janitor;
         suppliers;
 }
-
-
