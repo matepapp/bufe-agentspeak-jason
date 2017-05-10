@@ -17,7 +17,7 @@ public class BufeModel extends GridWorldModel {
     int availableProduct  = 16; // how many products are available
 
     Location lStorage = new Location(0, 0);
-    Location lSupplier = new Location(0, GridSize - 1);
+    Location lSupplier = new Location(GridSize - 1, 0);
     Location lCostumer  = new Location(GridSize - 1, GridSize - 1);
 
     public BufeModel() {

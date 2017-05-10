@@ -11,9 +11,9 @@ public class BufeView extends GridWorldView {
     BufeModel bmodel;
 
     public BufeView(BufeModel model) {
-        super(model, "Bufe", 1000);
+        super(model, "Bufe", 900);
         bmodel = model;
-        defaultFont = new Font("Times New Roman", Font.BOLD, 14); // change default font
+        defaultFont = new Font("Impact", Font.BOLD, 14); // change default font
         setVisible(true);
         repaint();
     }

@@ -2,7 +2,7 @@
 
 MAS bufe {
     infrastructure: Centralised
-	environment: BufeEnv
+	environment: BufeEnv(GUI)
     agents:
         costumer;
         bufe;
