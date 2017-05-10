@@ -1,18 +1,18 @@
 // Agent bufe in project Bufe.mas2j
 /* Initial beliefs and rules */
-limit(product,10).
+limit(Product,10).
 
 under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 /* Initial goals */
 /* Plans */
-+!order(Type, Product)
++!order(Type,Product)
 	: not under_the_limit(Product)
-	<- !at(bufe,storage);
-	get(Product);
-	!at(bufe,costumer);
-	.send(costumer, achieve, pay(amount)).
+	<- 	!at(bufe,storage);
+		get(Product);
+		!at(bufe,costumer);
+		.send(costumer, achieve, pay(Amount)).
 
-+!order(Type, Product)
++!order(Type,Product)
 	: under_the_limit(Product)
 	<- .send(suppliers, achieve, supplement(Product,50));
 	!order(Type,Product).
@@ -27,11 +27,11 @@ under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 	<- move(P);
 	!at(bufe,P).
 
-+delivered(Product, _qty)[source(suppliers)]
++delivered(Product, _Qty)[source(suppliers)]
 	: true
 	<- !order(Type,Product).
 
-+payed(amount)[source(costumer)]
++payed(Amount)[source(costumer)]
 	:true
 	<- give_prod(Product);
 	send(costumer,tell, gave_prod(Product)).
