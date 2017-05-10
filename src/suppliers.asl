@@ -2,6 +2,6 @@
 /* Initial beliefs and rules */
 /* Initial goals */
 /* Plans */
-+!supplement(Product,qty)[source(Ag)] : true
++!supplement(Product,qty)[source(bufe)] : true
   <-  deliver(Product,qty);
-     .send(Ag, tell, delivered(Product,qty)).
+     .send(bufe, tell, delivered(Product,qty)).
