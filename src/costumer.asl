@@ -3,18 +3,21 @@
 /* Initial beliefs and rules */
 
 /* Initial goals */
-!select(product,N).
+!select(product).
 
-+order(costumer,Product) : true
++!select(Product) : true
+	<- .send(bufe,achieve,order(type, Product)).
+
++order(type,Product) : true
 	<- !drink_or_eat(Product).
--order(costumer, Product) : true
+-order(type, Product) : true
 	<- !select(Product).
 	
 //while I have product, consume
-+!drink_or_eat(Product) : order(constumer,Product)
++!drink_or_eat(Product) : order(type,Product)
 	<- consume(Product);
 	!drink_or_eat(Product).
-+!drink_or_eat(Product) : not order(constumer, Product)
++!drink_or_eat(Product) : not order(type, Product)
 	<- true.
 
 +!pay(amount)[source(Ag)] : true
