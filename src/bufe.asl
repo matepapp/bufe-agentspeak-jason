@@ -32,5 +32,6 @@ under_the_limit(P) :- limit(P,Limit)& Qty > Limit.
 
 +payed(amount)[source(costumer)]
 	:true
-	<- give_prod(Product).
+	<- give_prod(Product);
+	send(costumer,tell, gave_prod(Product)).
 
