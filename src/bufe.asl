@@ -2,7 +2,7 @@
 /* Initial beliefs and rules */
 limit(product,10).
 
-under_the_limit(P) :- limit(P,Limit)& Qty > Limit.
+under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 /* Initial goals */
 /* Plans */
 +!order(Type, Product)
@@ -28,7 +28,8 @@ under_the_limit(P) :- limit(P,Limit)& Qty > Limit.
 	!at(bufe,P).
 
 +delivered(Product, _qty)[source(suppliers)]
-	: true.
+	: true
+	<- !order(Type,Product).
 
 +payed(amount)[source(costumer)]
 	:true
