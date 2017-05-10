@@ -7,7 +7,7 @@ public class BufeEnv extends Environment {
     @Override
     public void init(String[] args) {
         // initial percepts
-        addPercept(ld);
+
     }
 
     /**
