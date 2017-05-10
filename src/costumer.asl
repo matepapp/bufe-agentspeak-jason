@@ -11,8 +11,8 @@
 +order(type,Product) : true
 	<- !drink_or_eat(Product).
 -order(type, Product) : true
-	<- !select(Product).
-	
+	<- !select(type,Product).
+
 //while I have product, consume
 +!drink_or_eat(Product) : order(type,Product)
 	<- consume(Product);

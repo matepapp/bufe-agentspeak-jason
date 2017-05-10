@@ -63,6 +63,18 @@ public class BufeModel extends GridWorldModel {
         return true;
     }
 
+    boolean giveProduct() {
+        // TODO: implement
+        return true;
+    }
+
+    boolean getProduct() {
+      availableProduct--;
+      if (view != null)
+          view.update(lStorage.x,lStorage.y);
+      return true;
+    }
+
     boolean consumeProduct() {
         if (consumeCount > 0) {
             consumeCount--;

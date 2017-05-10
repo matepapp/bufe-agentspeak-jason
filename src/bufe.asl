@@ -24,7 +24,7 @@ under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 
 +!at(bufe,P) : at(bufe,P) <- true.
 +!at(bufe,P) : not at(bufe, P)
-	<-move(P);
+	<- move(P);
 	!at(bufe,P).
 
 +delivered(Product, _qty)[source(suppliers)]
