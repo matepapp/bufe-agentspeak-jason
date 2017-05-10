@@ -1,6 +1,6 @@
-import jason.asSyntax.Literal;
-import jason.asSyntax.Structure;
+import jason.asSyntax.*;
 import jason.environment.Environment;
+import jason.environment.grid.Location;
 import java.util.logging.Logger;
 
 public class BufeEnv extends Environment {
@@ -32,10 +32,20 @@ public class BufeEnv extends Environment {
      * Implementation of the agent's basic actions
      */
     @Override
-    public boolean executeAction(String ag, Structure act) {
-        System.out.println("Agent "+ag+" is doing "+act);
-        clearPercepts();
+    public boolean executeAction(String ag, Structure action) {
+        System.out.println("Agent "+ag+" is doing "+action);
+        boolean result = false;
 
-        return true;
+        if (action.getFunctor().equals("deliver")) {
+            // wait 5 seconds to finish "deliver"
+            try {
+                Thread.sleep(5000);
+                result = model.addProduct( (int)((NumberTerm)action.getTerm(1)).solve());
+            } catch (Exception e) {
+                logger.info("Failed to execute action deliver!"+e);
+            }
+        }
+
+        return result;
     }
 }
