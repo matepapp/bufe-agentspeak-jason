@@ -3,9 +3,9 @@
 /* Initial beliefs and rules */
 
 /* Initial goals */
-!select(product).
+!select(type,product).
 
-+!select(Product) : true
++!select(type,Product) : true
 	<- .send(bufe,achieve,order(type, Product)).
 
 +order(type,Product) : true
