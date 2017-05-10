@@ -1,0 +1,13 @@
+/* Jason Project */
+
+MAS bufe {
+    infrastructure: Centralised
+	environment: BufeEnv(gui)
+    agents:
+        costumer;
+        bufe;
+        janitor;
+        suppliers;
+}
+
+
