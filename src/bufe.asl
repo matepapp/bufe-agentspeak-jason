@@ -9,11 +9,10 @@ under_the_limit(P) :-
 /* Plans */
 +!order(Type,Product)
 	: not under_the_limit(Product)
-	<- 	!at(bufe,storage);
+	<- 	//!at(bufe,storage);
 		get(Product);
-		!at(bufe,costumer);
-		.send(costumer, achieve, pay(Amount));
-		?order(Type,Product).
+		//!at(bufe,costumer);
+		.send(costumer, achieve, pay(Amount)).
 		
 +!order(Type,Product)
 	: under_the_limit(Product)
