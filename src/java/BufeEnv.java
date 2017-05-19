@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 public class BufeEnv extends Environment {
     // common literals
     public static final Literal getProduct  = Literal.parseLiteral("get(Product)");
+    public static final Literal getproduct  = Literal.parseLiteral("get(product)");
     public static final Literal movePosition  = Literal.parseLiteral("move(P)");
     public static final Literal giveProduct  = Literal.parseLiteral("give_prod(Product)");
     public static final Literal consumeProduct  = Literal.parseLiteral("consume(product)");
@@ -50,7 +51,7 @@ public class BufeEnv extends Environment {
         }
 
         if (model.consumeCount > 0) {
-          // addPercept("bufe", order);
+          addPercept("bufe", order);
           addPercept("costumer", order);
         }
     }
@@ -66,7 +67,7 @@ public class BufeEnv extends Environment {
         if (action.equals(giveProduct)) {
             result = model.giveProduct();
 
-        } else if (action.equals(getProduct)) {
+        } else if (action.equals(getProduct) || action.equals(getproduct)) {
             result = model.getProduct();
 
         } else if (action.equals(consumeProduct)) {
