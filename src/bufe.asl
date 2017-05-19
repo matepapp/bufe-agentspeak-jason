@@ -2,7 +2,9 @@
 /* Initial beliefs and rules */
 limit(Product,10).
 
-under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
+under_the_limit(P) :- 
+	limit(P,Limit) &
+	Qty < Limit.
 /* Initial goals */
 /* Plans */
 +!order(Type,Product)
@@ -11,7 +13,7 @@ under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 		get(Product);
 		!at(bufe,costumer);
 		.send(costumer, achieve, pay(Amount)).
-
+		
 +!order(Type,Product)
 	: under_the_limit(Product)
 	<- .send(suppliers, achieve, supplement(Product,50));
@@ -24,7 +26,7 @@ under_the_limit(P) :- limit(P,Limit)& Qty < Limit.
 
 +!at(bufe,P) : at(bufe,P) <- true.
 +!at(bufe,P) : not at(bufe, P)
-	<- move(P);
+	<-move(P);
 	!at(bufe,P).
 
 +delivered(Product, _Qty)[source(suppliers)]
