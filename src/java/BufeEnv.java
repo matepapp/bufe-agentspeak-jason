@@ -50,7 +50,7 @@ public class BufeEnv extends Environment {
         }
 
         if (model.consumeCount > 0) {
-          addPercept("bufe", order);
+          // addPercept("bufe", order);
           addPercept("costumer", order);
         }
     }
@@ -71,7 +71,6 @@ public class BufeEnv extends Environment {
 
         } else if (action.equals(consumeProduct)) {
             result = model.consumeProduct();
-            System.out.println("Result of consumeProduct = " + result);
 
         } else if (action.equals(payProduct)) {
             result = model.payProduct();
