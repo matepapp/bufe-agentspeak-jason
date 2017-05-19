@@ -8,8 +8,9 @@ public class BufeEnv extends Environment {
     public static final Literal getProduct  = Literal.parseLiteral("get(Product)");
     public static final Literal movePosition  = Literal.parseLiteral("move(P)");
     public static final Literal giveProduct  = Literal.parseLiteral("give_prod(Product)");
-    public static final Literal consumeProduct  = Literal.parseLiteral("consume(Product)");
+    public static final Literal consumeProduct  = Literal.parseLiteral("consume(product)");
     public static final Literal payProduct  = Literal.parseLiteral("paying(Amount)");
+    public static final Literal order = Literal.parseLiteral("order(type,product)");
 
     public static final Literal atStorage = Literal.parseLiteral("at(bufe,storage)");
     public static final Literal atCostumer = Literal.parseLiteral("at(bufe,costumer)");
@@ -48,14 +49,10 @@ public class BufeEnv extends Environment {
             addPercept("bufe", atCostumer);
         }
 
-        // // add beer "status" the percepts
-        // if (model.fridgeOpen) {
-        //     addPercept("robot", Literal.parseLiteral("stock(beer,"+model.availableBeers+")"));
-        // }
-        // if (model.sipCount > 0) {
-        //     addPercept("robot", hob);
-        //     addPercept("owner", hob);
-        // }
+        if (model.consumeCount > 0) {
+          addPercept("bufe", order);
+          addPercept("costumer", order);
+        }
     }
 
     /**
@@ -74,6 +71,7 @@ public class BufeEnv extends Environment {
 
         } else if (action.equals(consumeProduct)) {
             result = model.consumeProduct();
+            System.out.println("Result of consumeProduct = " + result);
 
         } else if (action.equals(payProduct)) {
             result = model.payProduct();

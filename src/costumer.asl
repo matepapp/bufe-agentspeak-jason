@@ -6,7 +6,7 @@
 !select(Product).
 
 +!select(Product) : true
-	<- .send(bufe,achieve,order(Type, Product)).
+	<- .send(bufe,achieve,order(Type,Product)).
 
 +order(Type,Product) : true
 	<- !drink_or_eat(Product).
@@ -17,7 +17,7 @@
 +!drink_or_eat(Product) : order(Type,Product)
 	<- consume(Product);
 	!drink_or_eat(Product).
-+!drink_or_eat(Product) : not order(Type, Product)
++!drink_or_eat(Product) : not order(Type,Product)
 	<- true.
 
 +!pay(Amount)[source(Ag)] : true
@@ -28,7 +28,6 @@
    :  true
    <- .current_intention(I);
       .print("Failed to achieve goal '!pay(_)'. Current intention is: ",I).
-
 
 +gave_prod(Product)[source(Ag)]
 	: true

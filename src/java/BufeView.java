@@ -41,7 +41,7 @@ public class BufeView extends GridWorldView {
 
                 String costumer = "Costumer";
                 if (bmodel.consumeCount > 0) {
-                    costumer = "Consuming...";
+                    costumer = "Consuming (" + bmodel.consumeCount + ")";
                 }
                 g.setColor(Color.black);
                 drawString(g, x, y, defaultFont, costumer);

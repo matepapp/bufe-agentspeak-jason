@@ -79,7 +79,7 @@ public class BufeModel extends GridWorldModel {
     }
 
     boolean giveProduct() {
-        consumeCount++;
+        consumeCount = 40;
 
         Location pos = getAgPos(0);
         pos.x--;
