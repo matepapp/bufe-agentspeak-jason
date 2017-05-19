@@ -5,11 +5,11 @@ import java.util.logging.Logger;
 
 public class BufeEnv extends Environment {
     // common literals
-    public static final Literal getProduct  = Literal.parseLiteral("get(product)");
+    public static final Literal getProduct  = Literal.parseLiteral("get(Product)");
     public static final Literal movePosition  = Literal.parseLiteral("move(P)");
     public static final Literal giveProduct  = Literal.parseLiteral("give_prod(Product)");
     public static final Literal consumeProduct  = Literal.parseLiteral("consume(Product)");
-    public static final Literal payProduct  = Literal.parseLiteral("pay(Amount)");
+    public static final Literal payProduct  = Literal.parseLiteral("paying(Amount)");
 
     public static final Literal atStorage = Literal.parseLiteral("at(bufe,storage)");
     public static final Literal atCostumer = Literal.parseLiteral("at(bufe,costumer)");
