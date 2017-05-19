@@ -10,9 +10,9 @@
 
 +order(Type,Product) : true
 	<- !drink_or_eat(Product).
--order(type, Product) : true
-	<- !select(type,Product).
-
+-order(Type, Product) : true
+	<- !select(Type,Product).
+	
 //while I have product, consume
 +!drink_or_eat(Product) : order(Type,Product)
 	<- consume(Product);
@@ -24,6 +24,6 @@
 	<-pay(Amount);
 	.send(Ag, tell, payed(Amount)).
 
-+gave_prod(Product)[source(bufe)]
++gave_prod(Product)[source(Ag)]
 	: true
 	<- !drink_or_eat(Product).
