@@ -65,8 +65,6 @@ public class BufeModel extends GridWorldModel {
         return true;
     }
 
-
-
     boolean addProduct(int n) {
         availableProduct += n;
         if (view != null)
@@ -81,7 +79,12 @@ public class BufeModel extends GridWorldModel {
     }
 
     boolean giveProduct() {
-        consumeCount ++;
+        consumeCount++;
+
+        Location pos = getAgPos(0);
+        pos.x--;
+        pos.y--;
+        setAgPos(0, pos); // move the bufe 1 back
 
         if(view != null)
             view.update(lCostumer.x, lCostumer.y);

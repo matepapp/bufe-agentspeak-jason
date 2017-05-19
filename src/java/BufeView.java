@@ -23,7 +23,7 @@ public class BufeView extends GridWorldView {
     public void draw(Graphics g, int x, int y, int object) {
         Location lBufe = bmodel.getAgPos(0);
         // Location lSupplier = bmodel.getAgPos(1);
-        super.drawAgent(g, x, y, Color.lightGray, -1);
+        super.drawAgent(g, x, y, Color.white, -1);
 
         switch (object) {
             case BufeModel.STORAGE:
@@ -41,7 +41,7 @@ public class BufeView extends GridWorldView {
 
                 String costumer = "Costumer";
                 if (bmodel.consumeCount > 0) {
-                    costumer +=  " ("+bmodel.consumeCount+")";
+                    costumer = "Consuming...";
                 }
                 g.setColor(Color.black);
                 drawString(g, x, y, defaultFont, costumer);
