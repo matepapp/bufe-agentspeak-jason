@@ -22,7 +22,7 @@
 
 +!pay(Amount)[source(bufe)] : true
 	<-paying(Amount);
-	.send(bufe, tell, payed(Amount, true)).
+	.send(bufe, tell, payed(Amount)).
 
 -!pay(_)
    :  true

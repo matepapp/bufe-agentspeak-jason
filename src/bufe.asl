@@ -1,7 +1,6 @@
 // Agent bufe in project Bufe.mas2j
 /* Initial beliefs and rules */
 limit(Product,10).
-payed(Amount, false).
 
 under_the_limit(P) :-
 	limit(P,Limit) &
@@ -34,8 +33,7 @@ under_the_limit(P) :-
 	: true
 	<- !order(Type,Product).
 
-+payed(Amount, true)[source(costumer)]
-	: payed(Amount, false)
-	<- -+payed(Amount, false)
-  give_prod(Product);
++payed(Amount)[source(costumer)]
+	: true
+	<- give_prod(Product);
 	.send(costumer,tell, gave_prod(Product)).

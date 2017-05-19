@@ -33,12 +33,10 @@ public class BufeEnv extends Environment {
     }
 
     void updatePercepts() {
-        // clear the percepts of the agents
         clearPercepts("bufe");
         clearPercepts("costumer");
         clearPercepts("suppliers");
 
-        // TODO: set the position of the supplier
         // get the bufe location
         Location lBufe = model.getAgPos(0);
 
@@ -102,7 +100,7 @@ public class BufeEnv extends Environment {
 
         if (result) {
             updatePercepts();
-            try { Thread.sleep(100); } catch (Exception e) {}
+            try { Thread.sleep(200); } catch (Exception e) {}
         }
 
         return result;

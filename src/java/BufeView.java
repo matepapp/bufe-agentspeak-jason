@@ -22,7 +22,7 @@ public class BufeView extends GridWorldView {
     @Override
     public void draw(Graphics g, int x, int y, int object) {
         Location lBufe = bmodel.getAgPos(0);
-        // Location lSupplier = bmodel.getAgPos(1);
+        Location lSupplier = bmodel.getAgPos(1);
         super.drawAgent(g, x, y, Color.white, -1);
 
         switch (object) {
@@ -59,13 +59,5 @@ public class BufeView extends GridWorldView {
             g.setColor(Color.black);
             super.drawString(g, x, y, defaultFont, "Bufe");
         }
-
-        // Location lSupplier = bmodel.getAgPos(1);
-        // if (!lSupplier.equals(bmodel.lStorage)) {
-        //     c = Color.yellow;
-        //     super.drawAgent(g, x, y, c, -2);
-        //     g.setColor(Color.black);
-        //     super.drawString(g, x, y, defaultFont, "Supplier");
-        // }
     }
 }

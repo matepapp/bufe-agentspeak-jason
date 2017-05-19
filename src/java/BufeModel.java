@@ -25,7 +25,7 @@ public class BufeModel extends GridWorldModel {
         // ag code 0 means the bufe
         // ag code 1 means the supplier
         setAgPos(0, GridSize/2, GridSize/2);
-        // setAgPos(1, GridSize - 1, GridSize - 1);
+        setAgPos(1, GridSize - 1, 0);
 
         // initial location of storage, costumer, supplier
         add(STORAGE, lStorage);
@@ -33,29 +33,24 @@ public class BufeModel extends GridWorldModel {
     }
 
     boolean move(Location dest) {
-        Location pos = getAgPos(0);
-        if (pos.x < dest.x)
-            pos.x++;
-        else if (pos.x > dest.x)
-            pos.x--;
+        Location bufePos = getAgPos(0);
+        if (bufePos.x < dest.x)
+            bufePos.x++;
+        else if (bufePos.x > dest.x)
+            bufePos.x--;
 
-        if (pos.y < dest.y)
-            pos.y++;
-        else if (pos.y > dest.y)
-            pos.y--;
-        setAgPos(0, pos); // move the bufe on the grid
+        if (bufePos.y < dest.y)
+            bufePos.y++;
+        else if (bufePos.y > dest.y)
+            bufePos.y--;
+        setAgPos(0, bufePos); // move the bufe on the grid
 
-        // pos = getAgPos(1);
-        // if (pos.x < dest.x)
-        //     pos.x++;
-        // else if (pos.x > dest.x)
-        //     pos.x--;
-        //
-        // if (pos.y < dest.y)
-        //     pos.y++;
-        // else if (pos.y > dest.y)
-        //     pos.y--;
-        // setAgPos(1, pos); // move the supplier on the grid
+        Location supPos = getAgPos(1);
+        if (supPos.x < dest.x)
+            supPos.x++;
+        else if (supPos.x > dest.x)
+            supPos.x--;
+        setAgPos(1, supPos); // move the supplier on the grid
 
         // repaint the storage, costumer locations
         if (view != null) {
