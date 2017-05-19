@@ -5,9 +5,14 @@ import java.util.logging.Logger;
 
 public class BufeEnv extends Environment {
     // common literals
-    public static final Literal getProduct  = Literal.parseLiteral("get(Product)");
+    public static final Literal getProduct  = Literal.parseLiteral("get(product)");
     public static final Literal movePosition  = Literal.parseLiteral("move(P)");
     public static final Literal giveProduct  = Literal.parseLiteral("give_prod(Product)");
+    public static final Literal consumeProduct  = Literal.parseLiteral("consume(Product)");
+    public static final Literal payProduct  = Literal.parseLiteral("pay(Amount)");
+
+    public static final Literal atStorage = Literal.parseLiteral("at(bufe,storage)");
+    public static final Literal atCostumer = Literal.parseLiteral("at(bufe,costumer)");
 
     static Logger logger = Logger.getLogger(BufeEnv.class.getName());
 
@@ -30,6 +35,27 @@ public class BufeEnv extends Environment {
         clearPercepts("bufe");
         clearPercepts("costumer");
         clearPercepts("suppliers");
+
+        // TODO: set the position of the supplier
+        // get the bufe location
+        Location lBufe = model.getAgPos(0);
+
+        // add agent location to its percepts
+        if (lBufe.equals(model.lStorage)) {
+            addPercept("bufe", atStorage);
+        }
+        if (lBufe.equals(model.lCostumer)) {
+            addPercept("bufe", atCostumer);
+        }
+
+        // // add beer "status" the percepts
+        // if (model.fridgeOpen) {
+        //     addPercept("robot", Literal.parseLiteral("stock(beer,"+model.availableBeers+")"));
+        // }
+        // if (model.sipCount > 0) {
+        //     addPercept("robot", hob);
+        //     addPercept("owner", hob);
+        // }
     }
 
     /**
@@ -42,8 +68,16 @@ public class BufeEnv extends Environment {
 
         if (action.equals(giveProduct)) {
             result = model.giveProduct();
+
         } else if (action.equals(getProduct)) {
             result = model.getProduct();
+
+        } else if (action.equals(consumeProduct)) {
+            result = model.consumeProduct();
+
+        } else if (action.equals(payProduct)) {
+            result = model.payProduct();
+
         } else if (action.getFunctor().equals("move")) {
             String location = action.getTerm(0).toString();
             Location dest = null;
@@ -66,6 +100,11 @@ public class BufeEnv extends Environment {
             } catch (Exception e) {
                 logger.info("Failed to execute action deliver!"+e);
             }
+        }
+
+        if (result) {
+            updatePercepts();
+            try { Thread.sleep(100); } catch (Exception e) {}
         }
 
         return result;

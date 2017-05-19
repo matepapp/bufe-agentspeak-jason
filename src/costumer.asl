@@ -10,10 +10,10 @@
 
 +order(Type,Product) : true
 	<- !drink_or_eat(Product).
--order(type, Product) : true
+-order(Type, Product) : true
 	<- !select(type,Product).
 
-//while I have product, consume
+// while I have product, consume
 +!drink_or_eat(Product) : order(Type,Product)
 	<- consume(Product);
 	!drink_or_eat(Product).

@@ -6,6 +6,5 @@ MAS bufe {
     agents:
         costumer;
         bufe;
-        janitor;
         suppliers;
 }

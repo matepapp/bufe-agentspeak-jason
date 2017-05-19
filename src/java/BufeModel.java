@@ -6,31 +6,29 @@ public class BufeModel extends GridWorldModel {
 
     // constants for the grid objects
     public static final int STORAGE = 16;
-    public static final int SUPPLIER = 24;
     public static final int COSTUMER  = 32;
 
     // the grid size
     public static final int GridSize = 9;
 
-    // boolean carryingBeer = false; // whether the bufe is carrying beer
     int consumeCount = 0; // how much did the costumer eat/drink
     int availableProduct  = 16; // how many products are available
 
     Location lStorage = new Location(0, 0);
-    Location lSupplier = new Location(GridSize - 1, 0);
     Location lCostumer  = new Location(GridSize - 1, GridSize - 1);
 
     public BufeModel() {
         // create a 9x9 grid with one mobile agent
-        super(GridSize, GridSize, 1);
+        super(GridSize, GridSize, 2);
 
         // initial location of bufe (column 4, line 4)
         // ag code 0 means the bufe
+        // ag code 1 means the supplier
         setAgPos(0, GridSize/2, GridSize/2);
+        // setAgPos(1, GridSize - 1, GridSize - 1);
 
         // initial location of storage, costumer, supplier
         add(STORAGE, lStorage);
-        add(SUPPLIER, lSupplier);
         add(COSTUMER, lCostumer);
     }
 
@@ -45,16 +43,29 @@ public class BufeModel extends GridWorldModel {
             pos.y++;
         else if (pos.y > dest.y)
             pos.y--;
-        setAgPos(0, pos); // move the bufe in the grid
+        setAgPos(0, pos); // move the bufe on the grid
 
-        // repaint the storage, costumer, supplier locations
+        // pos = getAgPos(1);
+        // if (pos.x < dest.x)
+        //     pos.x++;
+        // else if (pos.x > dest.x)
+        //     pos.x--;
+        //
+        // if (pos.y < dest.y)
+        //     pos.y++;
+        // else if (pos.y > dest.y)
+        //     pos.y--;
+        // setAgPos(1, pos); // move the supplier on the grid
+
+        // repaint the storage, costumer locations
         if (view != null) {
             view.update(lStorage.x,lStorage.y);
             view.update(lCostumer.x,lCostumer.y);
-            view.update(lSupplier.x,lSupplier.y);
         }
         return true;
     }
+
+
 
     boolean addProduct(int n) {
         availableProduct += n;
@@ -63,8 +74,17 @@ public class BufeModel extends GridWorldModel {
         return true;
     }
 
+    boolean payProduct() {
+        if (view != null)
+            view.update(lCostumer.x,lCostumer.y);
+        return true;
+    }
+
     boolean giveProduct() {
-        // TODO: implement
+        consumeCount ++;
+
+        if(view != null)
+            view.update(lCostumer.x, lCostumer.y);
         return true;
     }
 
